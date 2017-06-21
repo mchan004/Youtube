@@ -98,7 +98,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         setupMenuBar()
         
-        //flowLayout.estimatedItemSize = CGSize(width: 100, height: 100)
+        
         
         collectionView?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: "cell")
@@ -125,7 +125,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let btnM = UIButton.init(type: .custom)
         btnM.setImage(#imageLiteral(resourceName: "more"), for: UIControlState.normal)
         
-        btnM.addTarget(self, action: #selector(HomeController.handleSearch), for: .touchUpInside)
+        btnM.addTarget(self, action: #selector(HomeController.handleMore), for: .touchUpInside)
         
         btnM.frame = CGRect(x: 0, y: 0, width: 23, height: 23)
         
@@ -135,8 +135,15 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         navigationItem.rightBarButtonItems = [moreButton, searchButton]
     }
     
-    func handleSearch(){
+    func handleSearch() {
         
+    }
+    
+    let settingsLauncher = SettingsLauncher()
+    
+    func handleMore() {
+        //show menu
+        settingsLauncher.showSettings()
     }
     
     let menuBar: MenuBar = {

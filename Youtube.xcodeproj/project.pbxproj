@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		180322931EEBACAE00D3FAA3 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180322921EEBACAE00D3FAA3 /* MenuBar.swift */; };
+		18448EFD1EFABFB200189051 /* SettingsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18448EFC1EFABFB200189051 /* SettingsLauncher.swift */; };
 		18494E371EF6499E0086AD44 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18494E361EF6499E0086AD44 /* Default-568h@2x.png */; };
 		188A57E71EE5343B00AB5392 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188A57E61EE5343B00AB5392 /* AppDelegate.swift */; };
 		188A57E91EE5343B00AB5392 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188A57E81EE5343B00AB5392 /* HomeController.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		180322921EEBACAE00D3FAA3 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		18448EFC1EFABFB200189051 /* SettingsLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLauncher.swift; sourceTree = "<group>"; };
 		18494E361EF6499E0086AD44 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		188A57E31EE5343A00AB5392 /* Youtube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Youtube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188A57E61EE5343B00AB5392 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				188A57E81EE5343B00AB5392 /* HomeController.swift */,
+				18448EFC1EFABFB200189051 /* SettingsLauncher.swift */,
 			);
 			name = C;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				188A57E91EE5343B00AB5392 /* HomeController.swift in Sources */,
 				18FD4F381EEEE8A60045AFE4 /* Video.swift in Sources */,
 				18F8C2861EEAF63000F23F6C /* VideoCell.swift in Sources */,
+				18448EFD1EFABFB200189051 /* SettingsLauncher.swift in Sources */,
 				18F8C2841EEAF5C800F23F6C /* Extenstions.swift in Sources */,
 				188A57E71EE5343B00AB5392 /* AppDelegate.swift in Sources */,
 				180322931EEBACAE00D3FAA3 /* MenuBar.swift in Sources */,

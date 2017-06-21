@@ -8,6 +8,8 @@
 
 import UIKit
 
+let imageCache = NSCache<AnyObject, AnyObject>()
+
 class VideoCell: BaseCell {
     var video: Video? {
         didSet {
@@ -23,18 +25,34 @@ class VideoCell: BaseCell {
         }
     }
     
+    
+    
     func setupThumbnailImage(){
         if let url = video?.thumbnaiImageName {
-            print(url)
-            let u = URL(string: url)
-            URLSession.shared.dataTask(with: u!) { (data, res, error) in
-                if error != nil {
-                    print(error!)
-                    return
-                }
-                
-                self.thumbnailImageView.image = UIImage(data: data!)
-            }.resume()
+            
+            if let imageFromCache = imageCache.object(forKey: url as AnyObject) as? UIImage{
+                self.thumbnailImageView.image = imageFromCache
+                return
+            }
+            else {
+                thumbnailImageView.image = nil
+                let u = URL(string: url)
+                URLSession.shared.dataTask(with: u!) { (data, res, error) in
+                    if error != nil {
+                        print(error!)
+                        return
+                    }
+                    print(url)
+                    DispatchQueue.main.async {
+                        if (Thread.isMainThread) {
+                            let imageToCache = UIImage(data: data!)
+                            self.thumbnailImageView.image = imageToCache
+                            imageCache.setObject(imageToCache!, forKey: url as AnyObject)
+                        }
+                    }
+                    
+                }.resume()
+            }
         }
         
         
