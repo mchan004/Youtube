@@ -83,11 +83,25 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
         return CGSize(width: collectionView.frame.width, height: 40)
     }
     
+    var homeController :HomeController?
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let setting =  settings[indexPath.item]
         print(setting.name)
         
-        handleDismiss()
+        
+        
+        UIView.animate(withDuration: 0.5, animations: { 
+            self.blackView.alpha = 0
+            if let window = UIApplication.shared.keyWindow {
+                self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: 200)
+            }
+            
+        }) { (bool) in
+            
+            self.homeController?.showControllerForSetting()
+            
+        }
     }
     
     
