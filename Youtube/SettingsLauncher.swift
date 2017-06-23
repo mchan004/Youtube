@@ -8,7 +8,20 @@
 
 import UIKit
 
-class SettingsLauncher: NSObject {
+class Setting: NSObject {
+    let name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+
+class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    let settings: [Setting] = {
+        return [Setting(name: "Cài đặt"), Setting(name: "Cấu hình"), Setting(name: "Giúp đỡ"), Setting(name: "Thông tin"), Setting(name: "Thoát")]
+    }()
+    
     
     let blackView = UIView()
     
@@ -52,7 +65,38 @@ class SettingsLauncher: NSObject {
         }
     }
     
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return settings.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! SettingCell
+        cell.setting = settings[indexPath.item]
+        return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 40)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let setting =  settings[indexPath.item]
+        print(setting.name)
+        
+        handleDismiss()
+    }
+    
+    
+    
     override init() {
         super.init()
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        
+        collectionView.register(SettingCell.self, forCellWithReuseIdentifier: "cell1")
     }
 }

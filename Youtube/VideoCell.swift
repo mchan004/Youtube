@@ -98,7 +98,7 @@ class VideoCell: BaseCell {
         tv.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         
         tv.text = "TaylorSwiftVEVO asd aa bb.. 1,655,448,444 view 2 year ago"
-        
+        tv.isEditable = false
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.textContainerInset = UIEdgeInsetsMake(0, -4, 0, 0)
         return tv
