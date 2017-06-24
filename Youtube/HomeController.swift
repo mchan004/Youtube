@@ -88,11 +88,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         //navigation
         navigationItem.title = "Home"
         navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
         titleLabel.text = "Home"
         titleLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         titleLabel.font = UIFont.systemFont(ofSize: 20)
         navigationItem.titleView = titleLabel
+        
         
         setupNavBarButtons()
         
@@ -153,8 +155,14 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
     }
     
-    func showControllerForSetting(){
+    func showControllerForSetting(setting :Setting){
         let dummySettingsViewController = UIViewController()
+        
+        dummySettingsViewController.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        dummySettingsViewController.navigationItem.title = setting.name
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)]
+        
         navigationController?.pushViewController(dummySettingsViewController, animated: true)
     }
     

@@ -86,8 +86,8 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
     var homeController :HomeController?
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let setting =  settings[indexPath.item]
-        print(setting.name)
+        
+        
         
         
         
@@ -98,8 +98,8 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
             }
             
         }) { (bool) in
-            
-            self.homeController?.showControllerForSetting()
+            let setting =  self.settings[indexPath.item]
+            self.homeController?.showControllerForSetting(setting: setting)
             
         }
     }
