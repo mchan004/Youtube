@@ -10,74 +10,17 @@ import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    
-//    var videos: [Video] = {
-//        var kanyeChannel = Channel()
-//        kanyeChannel.name = "Thanh Tu"
-//        kanyeChannel.profileImageName = "ava"
-//        
-//        var blankSpaceVideo = Video()
-//        blankSpaceVideo.title = "[Offical MV] Đưa nhau đi trốn - Đen ft. Linh Cáo (Prod. by Suicidal illness)"
-//        blankSpaceVideo.thumbnaiImageName = "jangmi"
-//        blankSpaceVideo.channel = kanyeChannel
-//        
-//        var badBloodVideo = Video()
-//        badBloodVideo.title = "FAPtv Cơm Nguội: Tập 114"
-//        badBloodVideo.thumbnaiImageName = "jangmi"
-//        badBloodVideo.channel = kanyeChannel
-//        
-//        return [blankSpaceVideo, badBloodVideo]
-//    }()
-
-    
     var videos: [Video]?
     
     func fetchVideos(){
-        let url = URL(string: "https://dvmaytinh.com/json.php")
         
-        URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            if error != nil {
-                print(error!)
-                return
-            }
-            if let dt = data
-            {
-                do
-                {
-                    let js = try JSONSerialization.jsonObject(with: dt, options: .mutableContainers)
-                    self.videos = [Video]()
-                    for dictionary in js as! [[String: AnyObject]] {
-                        let video = Video()
-                        video.title = dictionary["title"] as? String
-                        
-                        video.thumbnaiImageName = dictionary["thumbnaiImage"] as? String
-                        
-                        let channel = Channel()
-                        channel.name = dictionary["channel"]?["name"] as? String
-                        channel.profileImageName = dictionary["channel"]?["profileImageName"] as? String
-                        video.channel = channel
-                        self.videos?.append(video)
-                    }
-                    
-                    //ReloadData collectionView
-                    DispatchQueue.main.async {
-                        if (Thread.isMainThread) {
-                            self.collectionView?.reloadData()
-
-                        }
-                    }
-                    
-                    
-                    
-                    
-                }
-                catch let jsonError {
-                    print(jsonError)
-                }
-            }
-        }.resume()
+        APIService.sharedInstance.fetchVideos { (vd) in
+            self.videos = vd
+            self.collectionView?.reloadData()
+        }
         
     }
+    
     
 
     override func viewDidLoad() {
@@ -172,9 +115,21 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }()
     
     func setupMenuBar() {
+        
+        let redView = UIView()
+        redView.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        view.addSubview(redView)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: redView)
+        view.addConstraintsWithFormat(format: "V:|[v0(50)]", views: redView)
+        
         view.addSubview(menuBar)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
-        view.addConstraintsWithFormat(format: "V:|[v0(50)]", views: menuBar)
+        view.addConstraintsWithFormat(format: "V:[v0(50)]", views: menuBar)
+        
+        //giấu navigation khi swipe
+        navigationController?.hidesBarsOnSwipe = true
+        menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
+        
     }
     
     
