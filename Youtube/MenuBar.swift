@@ -20,6 +20,8 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     }()
     
     let cellID = "cellID"
+    var homeController: HomeController?
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,6 +68,8 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: { 
             self.layoutIfNeeded()
         }, completion: nil)
+        
+        homeController?.scrollToMenuIndex(menuIndex: indexPath.item)
         
     }
     
