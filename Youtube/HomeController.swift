@@ -35,7 +35,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         //Scroll Horizontal or Vertical
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
-            flowLayout.minimumLineSpacing = 0
+            //flowLayout.minimumLineSpacing = 0
         }
         collectionView?.isPagingEnabled = true
         
